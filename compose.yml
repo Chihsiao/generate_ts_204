@@ -1,0 +1,4 @@
+services:
+  generate_ts_204:
+    ports: [8080:8080/tcp]
+    build: .
