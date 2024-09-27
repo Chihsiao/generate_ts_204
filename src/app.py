@@ -7,7 +7,7 @@ app = Flask(__name__)
 def __api_generate_ts_204():
     response = make_response()
     hostname, _, port = request.host.partition(':')
-    response.headers['X-Tailscale-Response'] = f'ts_{hostname}'
+    response.headers['X-Tailscale-Response'] = f'response ts_{hostname}'
     response.status_code = 204
     return response
 

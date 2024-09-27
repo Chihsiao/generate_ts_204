@@ -5,7 +5,7 @@ generate_ts_204 is a simple web application designed to act as a Tailscale capti
 ## Features
 
 - Responds to HTTP GET requests at `/generate_204` with a `204 No Content` status.
-- Sets the `X-Tailscale-Response` header with the value `ts_<hostname>` where `<hostname>` is the hostname of the server.
+- Sets the `X-Tailscale-Response` header with the value `response ts_<hostname>`.
 - Can be deployed behind a reverse proxy for production use.
 
 ## Requirements
