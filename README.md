@@ -64,7 +64,10 @@ The application will now be running and accessible at `http://localhost:8080/gen
 
 It is designed to work behind a reverse proxy such as Nginx or Apache.
 
-Here is an example Nginx configuration to reverse proxy requests to the `generate_ts_204` application:
+Here are examples to reverse proxy requests to the `generate_ts_204` application:
+
+<details>
+<summary>Example for Nginx</summary>
 
 ```nginx
 server {
@@ -80,6 +83,32 @@ server {
     }
 }
 ```
+</details>
+
+<details>
+<summary>Example for Traefik</summary>
+
+```yaml
+name: headscale
+
+network:
+  gateway:
+    external: true
+
+services:
+  ts204:
+    image: ghcr.io/chihsiao/generate_ts_204:latest
+    restart: unless-stopped
+    networks:
+      - gateway
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.headscale-ts204.service=headscale-ts204
+      - traefik.http.services.headscale-ts204.loadbalancer.server.port=8080
+      - traefik.http.routers.headscale-ts204.rule=Host(`yourdomain.com`) && Path(`/generate_204`)
+      - traefik.http.routers.headscale-ts204.entrypoints=http
+```
+</details>
 
 ## License
 
